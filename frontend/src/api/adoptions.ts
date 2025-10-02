@@ -1,4 +1,5 @@
 import { apiClient } from './client'
+import type { AdoptionRequest } from '@/types/adoption'
 
 export interface AdoptionRequestInput {
   petId: string
@@ -9,5 +10,10 @@ export interface AdoptionRequestInput {
 
 export const submitAdoptionRequest = async (payload: AdoptionRequestInput) => {
   const response = await apiClient.post<{ message: string }>('/adoption-requests', payload)
+  return response.data
+}
+
+export const fetchAdoptionRequests = async () => {
+  const response = await apiClient.get<AdoptionRequest[]>('/adoption-requests')
   return response.data
 }
