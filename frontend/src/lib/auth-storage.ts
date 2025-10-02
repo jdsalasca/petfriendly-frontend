@@ -1,16 +1,28 @@
-const STORAGE_KEY = 'petfriendly:auth'
+﻿const STORAGE_KEY = 'petfriendly:auth'
 
 type StoredAuth = {
   accessToken: string
 }
 
+const getStorage = () => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return null
+  }
+  return window.localStorage
+}
+
 export const saveAuth = (auth: StoredAuth) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(auth))
+  const storage = getStorage()
+  if (!storage) return
+  storage.setItem(STORAGE_KEY, JSON.stringify(auth))
 }
 
 export const loadAuth = (): StoredAuth | null => {
+  const storage = getStorage()
+  if (!storage) return null
+
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = storage.getItem(STORAGE_KEY)
     if (!raw) return null
     return JSON.parse(raw) as StoredAuth
   } catch (error) {
@@ -20,5 +32,7 @@ export const loadAuth = (): StoredAuth | null => {
 }
 
 export const clearAuth = () => {
-  localStorage.removeItem(STORAGE_KEY)
+  const storage = getStorage()
+  if (!storage) return
+  storage.removeItem(STORAGE_KEY)
 }
