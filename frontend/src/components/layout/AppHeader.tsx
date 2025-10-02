@@ -1,9 +1,13 @@
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '@/context/AuthContext'
+import { Button } from '@/components/ui/button'
 
 const navLinkBase =
   'flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400'
 
 const AppHeader = () => {
+  const { isAuthenticated, user, logout } = useAuth()
+
   return (
     <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
@@ -37,6 +41,22 @@ const AppHeader = () => {
             Fundaciones
           </NavLink>
         </nav>
+        <div className="flex items-center gap-3">
+          {isAuthenticated ? (
+            <>
+              <span className="text-sm text-slate-300">
+                Hola, {user?.firstName ?? 'usuario'}
+              </span>
+              <Button variant="ghost" size="sm" onClick={logout}>
+                Cerrar sesion
+              </Button>
+            </>
+          ) : (
+            <NavLink to="/auth/login">
+              <Button size="sm">Ingresar</Button>
+            </NavLink>
+          )}
+        </div>
       </div>
     </header>
   )
