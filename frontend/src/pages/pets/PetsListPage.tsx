@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import PetCard from '@/components/pets/PetCard'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { usePetsQuery } from '@/hooks/usePetsQuery'
 import type { Pet } from '@/types/pets'
 
@@ -42,11 +44,10 @@ const PetsListPage = () => {
       <section className="grid gap-4 rounded-3xl border border-slate-800/80 bg-slate-900/40 p-6 shadow-lg shadow-emerald-500/5 md:grid-cols-4">
         <label className="flex flex-col gap-2 text-sm text-slate-300 md:col-span-2">
           Ciudad
-          <input
+          <Input
             value={city}
             onChange={(event) => setCity(event.target.value)}
             placeholder="Medellin, Bogota, Lima..."
-            className="rounded-2xl border border-slate-700/60 bg-slate-950 px-4 py-3 text-base text-white outline-none transition focus:border-emerald-400"
           />
         </label>
         <label className="flex flex-col gap-2 text-sm text-slate-300">
@@ -64,28 +65,28 @@ const PetsListPage = () => {
             ))}
           </select>
         </label>
-        <button
-          type="button"
-          onClick={() => {
-            setCity('')
-            setSpecies('')
-          }}
-          className="self-end rounded-2xl border border-emerald-400/40 bg-transparent px-4 py-3 text-sm font-semibold text-emerald-300 transition hover:border-emerald-300 hover:text-emerald-200"
-        >
-          Limpiar filtros
-        </button>
+        <div className="flex items-center justify-end gap-3">
+          <Button variant="secondary" onClick={() => refetch()}>
+            Buscar
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setCity('')
+              setSpecies('')
+            }}
+          >
+            Limpiar
+          </Button>
+        </div>
       </section>
 
       {isError ? (
         <div className="rounded-3xl border border-red-500/40 bg-red-500/10 p-6 text-red-200">
           <p className="text-sm font-semibold">No pudimos cargar las mascotas.</p>
-          <button
-            type="button"
-            className="mt-3 rounded-full border border-red-400/40 px-4 py-2 text-sm font-semibold text-red-100 transition hover:border-red-300"
-            onClick={() => refetch()}
-          >
+          <Button variant="outline" className="mt-3" onClick={() => refetch()}>
             Reintentar
-          </button>
+          </Button>
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
