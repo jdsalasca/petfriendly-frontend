@@ -4,6 +4,7 @@ import FoundationsPage from '@/pages/foundations/FoundationsPage'
 import HomePage from '@/pages/home/HomePage'
 import LoginPage from '@/pages/auth/LoginPage'
 import RegisterPage from '@/pages/auth/RegisterPage'
+import AdoptionRequestPage from '@/pages/pets/AdoptionRequestPage'
 import PetDetailPage from '@/pages/pets/PetDetailPage'
 import PetsListPage from '@/pages/pets/PetsListPage'
 
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: 'pets/:petId',
         element: <PetDetailPage />
+      },
+      {
+        path: 'pets/:petId/apply',
+        element: <AdoptionRequestPage />
       },
       {
         path: 'foundations',
