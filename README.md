@@ -1,11 +1,22 @@
-﻿# PetFriendly Frontend
+# PetFriendly Frontend
 
-This repository hosts the frontend for the PetFriendly platform. The product and API context live in ase.txt and ackend.json.
+This repository hosts the frontend for the PetFriendly platform. Product and API context live in `base.txt` and `backend.json`.
 
-## Tech Stack
-- React + Vite + TypeScript
-- Tailwind CSS + shadcn/ui
-- React Router
+## Project layout
+- `frontend/`: Vite + React + TypeScript application
+- `base.txt`: product vision and requirements
+- `backend.json`: OpenAPI contract for the Spring Boot backend
 
-## Development
-Guidance will be filled in as the project evolves.
+## Getting started
+```bash
+cd frontend
+npm install
+npm run dev
+```
+The dev server runs on http://localhost:3000.
+
+## Tech stack
+- React 18 + Vite 5
+- TypeScript, React Router, React Query
+- Tailwind CSS (utility-first styling)
+- Planned: shadcn/ui component system and modern design system tokens
