@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import MainLayout from '@/layouts/MainLayout'
 import FoundationsPage from '@/pages/foundations/FoundationsPage'
+import FoundationDetailPage from '@/pages/foundations/FoundationDetailPage'
 import HomePage from '@/pages/home/HomePage'
 import LoginPage from '@/pages/auth/LoginPage'
 import RegisterPage from '@/pages/auth/RegisterPage'
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: 'foundations',
         element: <FoundationsPage />
+      },
+      {
+        path: 'foundations/:foundationId',
+        element: <FoundationDetailPage />
       },
       {
         path: 'auth/login',

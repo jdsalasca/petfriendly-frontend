@@ -1,5 +1,7 @@
-﻿import type { Foundation } from '@/types/foundation'
+import { Link } from 'react-router-dom'
+import type { Foundation } from '@/types/foundation'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 
 interface Props {
@@ -22,16 +24,13 @@ export const FoundationCard = ({ foundation }: Props) => {
       <div className="flex flex-wrap gap-3 text-sm text-slate-300">
         {foundation.email && <span className="rounded-full bg-slate-800/80 px-3 py-1">{foundation.email}</span>}
         {foundation.phone && <span className="rounded-full bg-slate-800/80 px-3 py-1">{foundation.phone}</span>}
-        {foundation.website && (
-          <a
-            className="rounded-full bg-emerald-500/10 px-3 py-1 text-emerald-200 transition hover:text-emerald-100"
-            href={foundation.website}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Sitio web
-          </a>
-        )}
+      </div>
+      <div className="mt-auto flex justify-end">
+        <Link to={`/foundations/${foundation.id}`}>
+          <Button variant="secondary" size="sm">
+            Ver detalles
+          </Button>
+        </Link>
       </div>
     </Card>
   )
